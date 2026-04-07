@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:sets": "node scripts/sync-sets.mjs",
+    "sync:cards": "node scripts/sync-cards.mjs",
+    "snapshot:prices": "node scripts/snapshot-prices.mjs",
+    "snapshot:portfolio": "node scripts/snapshot-portfolios.mjs all",
+    "snapshot:user": "node scripts/snapshot-portfolios.mjs user"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
