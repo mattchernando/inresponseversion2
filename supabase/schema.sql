@@ -263,7 +263,7 @@ BEGIN
     VALUES (NEW.id, 'My Portfolio', true);
     RETURN NEW;
 END;
-$$ language 'plpgsql SECURITY DEFINER;
+$$ language plpgsql SECURITY DEFINER;
 
 -- Trigger to create default portfolio when user signs up
 CREATE TRIGGER create_default_portfolio_trigger
