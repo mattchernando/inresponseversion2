@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search, ArrowLeft, ExternalLink, RotateCw, X, Plus, TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
@@ -246,7 +246,7 @@ function CardRow({ card, onDetails, getRarityColor, getRecommendationColor }: {
   );
 }
 
-export default function SearchResultsPage() {
+function SearchResultsPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -367,5 +367,13 @@ export default function SearchResultsPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black text-white flex items-center justify-center text-gray-400">Loading...</div>}>
+      <SearchResultsPage />
+    </Suspense>
   );
 }
