@@ -17,7 +17,7 @@ const updateHoldingSchema = z.object({
 // PATCH /api/portfolio/holdings/[id] - Update holding
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await AuthService.getCurrentUser();
@@ -25,7 +25,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const holdingId = params.id;
+    const { id: holdingId } = await params;
     
     // Verify user owns this holding
     const ownsHolding = await PortfolioService.userOwnsHolding(holdingId, user.id);
@@ -56,7 +56,7 @@ export async function PATCH(
 // DELETE /api/portfolio/holdings/[id] - Delete holding
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await AuthService.getCurrentUser();
@@ -64,7 +64,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const holdingId = params.id;
+    const { id: holdingId } = await params;
     
     // Verify user owns this holding
     const ownsHolding = await PortfolioService.userOwnsHolding(holdingId, user.id);

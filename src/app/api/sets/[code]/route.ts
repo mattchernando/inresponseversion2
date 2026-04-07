@@ -3,10 +3,10 @@ import { DatabaseService } from '@/lib/db/service';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { code: string } }
+  { params }: { params: Promise<{ code: string }> }
 ) {
   try {
-    const setCode = params.code;
+    const { code: setCode } = await params;
     
     // Get set information
     const set = await DatabaseService.getSetByCode(setCode);
