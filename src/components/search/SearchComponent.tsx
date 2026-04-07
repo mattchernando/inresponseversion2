@@ -34,10 +34,18 @@ export function SearchComponent({ initialResults = [], initialSets = [] }: Searc
   const fetchSets = async () => {
     try {
       const response = await fetch('/api/sets');
+      if (!response.ok) {
+        // If API fails, just use empty sets array
+        console.warn('Sets API not available, using empty sets');
+        setSets([]);
+        return;
+      }
       const data = await response.json();
       setSets(data.data || []);
     } catch (error) {
       console.error('Failed to fetch sets:', error);
+      // Set empty sets to prevent app from breaking
+      setSets([]);
     }
   };
 
@@ -58,8 +66,14 @@ export function SearchComponent({ initialResults = [], initialSets = [] }: Searc
       }
       
       const response = await fetch(`/api/cards/search?${params}`);
-      const data = await response.json();
       
+      if (!response.ok) {
+        console.warn('Search API not available, showing empty results');
+        setResults([]);
+        return;
+      }
+      
+      const data = await response.json();
       setResults(data.data || []);
     } catch (error) {
       console.error('Search failed:', error);
