@@ -62,7 +62,7 @@ export function AddToPortfolioModal({
         quantity: 1,
         purchase_price: printing.usd || 0,
         acquired_date: new Date().toISOString().split('T')[0],
-        condition: 'near_mint',
+        condition: CardCondition.NEAR_MINT,
         finish: printing.finish || '',
         source: '',
         notes: ''
