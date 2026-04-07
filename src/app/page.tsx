@@ -1,5 +1,3 @@
-import { SearchComponent } from '@/components/search/SearchComponent';
-
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -13,7 +11,28 @@ export default function HomePage() {
           </p>
         </div>
         
-        <SearchComponent />
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4">Welcome!</h2>
+            <p className="text-gray-600 mb-4">
+              This is a minimal version of the app to test basic routing.
+            </p>
+            <div className="space-y-2">
+              <a href="/auth" className="block text-blue-600 hover:text-blue-800 underline">
+                Go to Auth Page
+              </a>
+              <a href="/portfolio" className="block text-blue-600 hover:text-blue-800 underline">
+                Go to Portfolio
+              </a>
+              <a href="/debug" className="block text-blue-600 hover:text-blue-800 underline">
+                Go to Debug Page
+              </a>
+              <a href="/test" className="block text-blue-600 hover:text-blue-800 underline">
+                Go to Test Page
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
